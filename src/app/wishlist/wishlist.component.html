@@ -1,0 +1,26 @@
+<section class="mx-auto bg-main-light p-3 mb-3 w-75 rounded shadow" *ngIf="wishlistDetails;else msg">
+    <div class="d-flex justify-content-between">
+     <h1 class="h3 text-center mx-auto fw-bold">My wish List</h1>    
+    </div>
+ 
+     <div class="row border-bottom py-2" *ngFor="let item of wishlistDetails">
+         <div class="col-md-2">
+             <img class="w-100" [src]="item.imageCover" [alt]="item.title">
+         </div>
+         <div class="col-md-10 d-flex align-items-center justify-content-between">
+             <div>
+                 <h3 class="h6">{{item.title}}</h3>
+                 <p class="text-main small mb-0"> price : {{item.price}} EGP</p>
+                 <button class="btn m-0 p-0 text-danger" (click)="removeItem(item._id)"> <i class="fas fa-trash-can"></i> remove </button>
+             </div>
+             <button  (click)="addProductToCart(item._id , btnAdd)" #btnAdd class="btn bg-main text-white" (click)="removeItem(item._id)"> Add To Cart </button>
+         </div>
+     </div>
+  
+ </section>
+ 
+ 
+ <ng-template #msg >
+     <h2 class="text-center"> Your Wishlist Is Empty ...</h2>
+ </ng-template>
+ 

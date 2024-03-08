@@ -1,0 +1,83 @@
+<section class="py-4">
+    
+        <div class="row g-0">
+            <div class="col-md-9">
+                <owl-carousel-o [options]="mainSlideOptions">
+                    <ng-template carouselSlide>
+                        <img height="400" src="./assets/images/slider-image-1.jpeg" alt="slide 1">
+                    </ng-template>  
+
+                    <ng-template carouselSlide>
+                        <img height="400" src="./assets/images/slider-image-2.jpeg" alt="slide 2">
+                    </ng-template>  
+
+                    <ng-template carouselSlide>
+                        <img height="400" src="./assets/images/slider-image-3.jpeg" alt="slide 3">
+                    </ng-template>  
+
+
+                  </owl-carousel-o>
+            </div>
+
+            <div class="col-md-3">
+
+                <img height="200" src="./assets/images/slide-1.jpeg" alt="slide 4" class="w-100">
+                <img height="200" src="./assets/images/slide-2.jpeg" alt="slide 5"  class="w-100">
+            </div>
+       
+    </div>
+</section>
+
+
+<section class="py-4"  *ngIf="categories.length > 0 ">
+ <h3>show popular category</h3>
+ <owl-carousel-o [options]="categoryOptions">
+
+    <ng-container *ngFor="let CategorySlide of categories">
+      <ng-template carouselSlide>
+        <img [src]="CategorySlide.image" [alt]="CategorySlide.name" [title]="CategorySlide.name" height="300">
+        <h3 class="h6 text-main pt-2 text-center">{{CategorySlide.name}}</h3>
+      </ng-template>
+
+    </ng-container>
+
+  </owl-carousel-o>
+</section>
+
+
+<section class="py-5">
+    <h3 class="text-center"> Product </h3>
+    <input type="text"  class="form-control w-50 m-auto my-3" placeholder="search..." [(ngModel)]="term">
+        <div class="row justify-content-center g-4">
+            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2"  *ngFor= "let product of products| search : term | slice : 0 : 18  ">
+               <div class="product overflow-hidden p-2 h-100">
+
+                <i *ngIf="!wishData.includes(product._id)"  class="fa-regular fa-heart heart cursor-pointer" (click)="addToWishlist(product._id)"></i>
+
+                <i *ngIf="wishData.includes(product._id)"  class="fa-solid fa-heart text-danger fa-2x cursor-pointer " (click)="removeFromWishlist(product._id)"></i>
+
+               <header role="button" [routerLink]="['/details' , product._id]">
+
+                <img [src]="product.imageCover"  [alt]="product.title" [title]="product.title" class="w-100">
+              
+                <h3 class="h5 pt-3 small">{{product.title|cutText : 2 }}</h3>
+                <h6 class="text-main h6">{{product.category.name}}</h6>
+           
+                <div class="d-flex justify-content-between small">
+                    <span>{{product.price}} EGP</span>
+                    <span>
+                        <i [class.rating-color]="product.ratingsAverage >=num" *ngFor="let num of [1,2,3,4,5]" class="fa-solid fa-star "></i>
+                        {{product.ratingsAverage}}
+                    </span>
+                </div>
+               </header>
+               
+               <footer>
+                <button  (click)="addProductToCart(product._id , btnAdd)" #btnAdd class="btn bg-main text-white w-100"> +Add To Cart </button>
+               </footer>
+
+               </div>
+            </div>
+       
+    </div>
+</section>

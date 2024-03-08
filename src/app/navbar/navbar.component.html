@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg bg-main-light fixed-top" #navBar>
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="./assets/images/freshcart-logo.svg" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLogin" routerLink="home"
+            routerLinkActive="text-white bg-main rounded-pill">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLogin" routerLink="products"
+            routerLinkActive="text-white bg-main rounded-pill">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLogin" routerLink="categories"
+            routerLinkActive="text-white bg-main rounded-pill">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLogin" routerLink="brands"
+            routerLinkActive="text-white bg-main rounded-pill">Brands</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLogin" routerLink="allOrders"
+            routerLinkActive="text-white bg-main rounded-pill">All Order</a>
+        </li>
+
+      </ul>
+
+      <div class="social-icons d-flex gap-3 align-items-center">
+
+        <li class="nav-item me-3 cursor-pointer" routerLink="wishlist">
+          <a class="nav-link position-relative" *ngIf="isLogin" >
+            <i class="fa-solid fa-heart text-danger  fs-2"></i>
+          <span class=" badge bg-info position-absolute top-5 end-5 small h6">{{wishNum}}</span>
+          </a>
+        </li>
+
+        <li class="nav-item me-4 ">
+          <a class="nav-link position-relative" *ngIf="isLogin" routerLink="cart">
+          <i class="fas fa-cart-shopping fs-2 text-main" #shoppingIcon></i>
+          <span class=" badge bg-info position-absolute top-5 end-5 small h6"> {{navNum}} </span>
+          </a>
+        </li>
+        <i class="fa-brands fa-instagram cursor-pointer"></i>
+        <i class="fa-brands fa-facebook cursor-pointer"></i>
+        <i class="fa-brands fa-tiktok  cursor-pointer"></i>
+        <i class="fa-brands fa-twitter cursor-pointer "></i>
+        <i class="fa-brands fa-linkedin cursor-pointer "></i>
+        <i class="fa-brands fa-youtube cursor-pointer "></i>
+
+        <a class="nav-link" *ngIf="!isLogin" routerLink="login"
+          routerLinkActive="text-white bg-main rounded-pill">Login</a>
+        <a class="nav-link" *ngIf="!isLogin" routerLink="register"
+          routerLinkActive="text-white bg-main rounded-pill">Register</a>
+        <a class="nav-link cursor-pointer" *ngIf="isLogin" (click)="logOut()">Logout</a>
+      </div>
+
+
+
+    </div>
+  </div>
+</nav>

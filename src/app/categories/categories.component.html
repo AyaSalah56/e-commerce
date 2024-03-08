@@ -1,0 +1,16 @@
+<section class="my-4" *ngIf="CategoryData">
+    <h2 class=" fw-bold mb-5 text-main text-center">All categories</h2>
+    <div class="row g-4 justify-content-center">
+        <div *ngFor="let cat of CategoryData" class="col-sm-6 col-md-4 col-lg-3">
+            <div role="button" class="border border-success rounded p-2 shadow"  [routerLink]="['/catDetails' , cat._id ]">
+                <img [src]="cat.image" [alt]="cat.name" class="w-100" height="300px">
+                <h3 class="text-main text-center pt-3">{{cat.name}}</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+

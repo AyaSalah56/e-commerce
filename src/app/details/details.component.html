@@ -1,0 +1,43 @@
+<section *ngIf="product" class="w-75 m-auto rounded shadow p-3 my-5">
+    <div class="row align-items-center g-4">
+        <div class="col-md-3">
+            <owl-carousel-o [options]=" ProDetailsOPT">
+
+                <ng-container *ngFor="let slide of product.images">
+                  <ng-template carouselSlide [id]="slide.id">
+                    <img [src]="slide" class="w-100 py-3" [alt]="slide.title">
+                  </ng-template>
+                </ng-container>
+            
+              </owl-carousel-o>
+           
+        </div>
+
+        <div class="col-md-9">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h3 class="h5">{{product.title}}</h3>
+                    <p class="text-muted small">{{product.description}}</p>
+                </div>
+                <div>
+                    <i *ngIf="!wishData.includes(product._id)" class="fa-regular fa-heart heart cursor-pointer fa-2x"
+                        (click)="addToWishlist(product._id)"></i>
+                    <i *ngIf="wishData.includes(product._id)"
+                        class="fa-solid fa-heart text-danger fa-2x cursor-pointer "
+                        (click)="removeFromWishlist(product._id)"></i>
+                </div>
+            </div>
+            <span>{{product.category.name}}</span>
+            <div class="d-flex justify-content-between small my-2">
+                <span>{{product.price}} EGP</span>
+                <span>
+                    <i [class.rating-color]="product.ratingsAverage >=num" *ngFor="let num of [1,2,3,4,5]"
+                        class="fa-solid fa-star "></i>
+                    {{product.ratingsAverage}}
+                </span>
+            </div>
+            <button (click)="addProductToCart(product._id , btnAdd)" #btnAdd class="btn bg-main text-white w-100"> +Add
+                To Cart </button>
+        </div>
+    </div>
+</section>
